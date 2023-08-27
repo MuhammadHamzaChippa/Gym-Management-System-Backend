@@ -33,7 +33,7 @@ export class CreateMember {
   gender: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty()
   image: string;
 
