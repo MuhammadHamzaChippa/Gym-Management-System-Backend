@@ -14,7 +14,7 @@ export class PaymentController {
   }
 
   @Get('')
-  getAllPayments(){
+  getAllPayments() {
     return this.payment.getAllPayment();
   }
 
@@ -30,6 +30,11 @@ export class PaymentController {
 
   @Get(':year')
   getYearlyPayments(@Param('year') year: string) {
-    console.log('Get Yearly Payments');
+    return this.payment.getYearlyPayments(year);
+  }
+
+  @Post('range')
+  getPaymentRange(@Body() dto: { fromDate: Date; toDate: Date }) {
+    return this.payment.getPaymentsRage(dto.fromDate, dto.toDate);
   }
 }

@@ -67,8 +67,8 @@ export class PaymentService {
     return await this.prisma.payment.findMany({
       where: {
         paymentDate: {
-          gte: startDate,
-          lt: endDate,
+          gte: new Date(startDate).toISOString(),
+          lt: new Date(endDate).toISOString(),
         },
       },
     });
