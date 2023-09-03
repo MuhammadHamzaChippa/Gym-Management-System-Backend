@@ -7,13 +7,17 @@ export class PaymentService {
   constructor(private prisma: PrismaService) {}
 
   async createPayment(dto: CreatePayment) {
-    return this.prisma.payment.create({
+    return await this.prisma.payment.create({
       data: dto,
     });
   }
 
+  async getAllPayment() {
+    return await this.prisma.payment.findMany();
+  }
+
   async getUserPayments(memberId: string) {
-    return this.prisma.payment.findMany({
+    return await this.prisma.payment.findMany({
       where: {
         memberId,
       },
@@ -28,7 +32,7 @@ export class PaymentService {
 
   async getMonthlyPayments(month: string) {
     const targetMonth = this.monthNameToNumber(month);
-    return this.prisma.payment.findMany({
+    return await this.prisma.payment.findMany({
       where: {
         AND: [
           {
@@ -49,7 +53,7 @@ export class PaymentService {
   }
 
   async getYearlyPayments(year: string) {
-    return this.prisma.payment.findMany({
+    return await this.prisma.payment.findMany({
       where: {
         paymentDate: {
           gte: new Date(`${year}-01-01`),
@@ -60,7 +64,7 @@ export class PaymentService {
   }
 
   async getPaymentsRage(startDate: Date, endDate: Date) {
-    return this.prisma.payment.findMany({
+    return await this.prisma.payment.findMany({
       where: {
         paymentDate: {
           gte: startDate,

@@ -19,7 +19,7 @@ export class MemberController {
     return this.member.getMember(memeberId);
   }
 
-  @Get('/all')
+  @Get('')
   getAllMember() {
     return this.member.getAllMember();
   }

@@ -60,7 +60,7 @@ export class CreateMember {
   address: string;
 
   @IsOptional()
-  @IsDate()
+  @IsString()
   @ApiProperty()
-  admissionDate?: Date;
+  admissionDate?: string;
 }

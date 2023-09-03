@@ -8,19 +8,24 @@ import { ApiTags } from '@nestjs/swagger';
 export class PaymentController {
   constructor(private payment: PaymentService) {}
 
-  @Post(':memberId')
+  @Post()
   createPayment(@Body() dto: CreatePayment) {
-    console.log('Create Payment');
+    return this.payment.createPayment(dto);
+  }
+
+  @Get('')
+  getAllPayments(){
+    return this.payment.getAllPayment();
   }
 
   @Get(':memberId')
   getMemberPayments(@Param('memberId') memberId: string) {
-    console.log('Get User Payments');
+    return this.payment.getUserPayments(memberId);
   }
 
   @Get(':month')
   getMonthlyPayments(@Param('month') month: string) {
-    console.log('Get Monthly Payments');
+    return this.payment.getMonthlyPayments(month);
   }
 
   @Get(':year')

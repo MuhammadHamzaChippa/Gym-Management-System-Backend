@@ -7,13 +7,13 @@ export class MemberService {
   constructor(private prisma: PrismaService) {}
 
   async createMember(dto: CreateMember) {
-    return this.prisma.member.create({
+    return await this.prisma.member.create({
       data: dto,
     });
   }
 
   async getMember(id: string) {
-    return this.prisma.member.findUnique({
+    return await this.prisma.member.findUnique({
       where: {
         id,
       },
@@ -21,11 +21,11 @@ export class MemberService {
   }
 
   async getAllMember() {
-    return this.prisma.member.findMany();
+    return await this.prisma.member.findMany();
   }
 
   async getMemberByMatchString(matchString: string) {
-    return this.prisma.member.findMany({
+    return await this.prisma.member.findMany({
       where: {
         name: {
           contains: matchString,
@@ -45,7 +45,7 @@ export class MemberService {
       throw new ForbiddenException('Access to Resource Denied');
     }
 
-    return this.prisma.member.update({
+    return await this.prisma.member.update({
       where: {
         id,
       },
@@ -64,7 +64,7 @@ export class MemberService {
       throw new ForbiddenException('Access to Resource Denied');
     }
 
-    return this.prisma.member.delete({
+    return await this.prisma.member.delete({
       where: {
         id,
       },

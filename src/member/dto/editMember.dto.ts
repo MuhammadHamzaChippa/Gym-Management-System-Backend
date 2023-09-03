@@ -45,8 +45,8 @@ export class EditMember {
   @ApiProperty()
   address?: string;
 
-  @IsDate()
+  @IsString()
   @IsOptional()
   @ApiProperty()
-  admissionDate?: Date;
+  admissionDate?: string;
 }
