@@ -4,9 +4,10 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import * as express from 'express';
 import { join } from 'path';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -25,7 +26,6 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document, {
     customSiteTitle: 'Gym Management System',
   });
-
   app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
   await app.listen(3000);
 }
