@@ -42,6 +42,6 @@ export class UtilController {
     )
     file: Express.Multer.File,
   ) {
-    return { imageUrl: `http://localhost:3000/uploads/${file.filename}` }; // Return the image URL
+    return { imageUrl: `https://shy-erin-lion-boot.cyclic.app/uploads/${file.filename}` }; // Return the image URL
   }
 }
